@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de jogos</title>
+</head>
+<body>
+    <h1>Bem vindo á página de jogos</h1>
+    <hr>
+    <p>Game mais jogado do momento: </p>
+    <ul>
+        <li>Título: {{titulo}}</li>
+        <li>Ano: {{ano}}</li>
+        <li>Categoria: {{categoria}}</li>
+    </ul>
+    <p>O jogo {{titulo}} tem {{2025 - ano}} anos.</p>
+    <hr>
+    <p>O jogo {{titulo}} está sendo jogado por>:</p>
+    <ol>
+        {% for jogador in jogadores %}
+        <li>{{jogador}}</li>
+        {% endfor %}
+    </ol>
+    <hr>
+    <p>Outros jogos sendo jogados no momento: </p>
+    <ul>
+        {% for jogo in jogos %}
+        <li>{{jogo}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
