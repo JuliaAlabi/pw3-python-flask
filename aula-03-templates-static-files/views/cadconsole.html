@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Console</title>
+  </head>
+  <body>
+    <h2>Cadastro de Consoles</h2>
+    <hr />
+    <form action="{{url_for('cadconsole')}}" method="POST">
+      <label>Nome: </label>
+      <input type="text" name="nome" required />
+
+      <label>Fabricante: </label>
+      <input type="text" name="fabricante" required />
+
+      <label>Ano: </label>
+      <input type="text" name="ano" required />
+
+      <label>Preço: </label>
+      <input type="text" name="preco" required />
+
+      <input type="submit" value="Cadastrar" />
+    </form>
+    <br />
+    <hr />
+    <h4>Consoles Cadastrados:</h4>
+    {% for console in consolelist %} Nome: <strong>{{console.nome}}</strong
+    ><br />
+    Fabricante: <strong>{{console.fabricante}}</strong><br />
+    Ano: <strong>{{console.ano}}</strong><br />
+    Preço: <strong>{{console.preco}}</strong><br /><br />
+    {% endfor %}
+  </body>
+</html>

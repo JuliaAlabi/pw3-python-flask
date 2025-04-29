@@ -6,10 +6,11 @@
     <title>Página de jogos</title>
   </head>
   <body>
-    <h1>Bem vindo á página de jogos</h1>
-
+    
+    <h1>Bem vindo à página de jogos</h1>
+    
     <hr />
-
+    
     <p>Game mais jogado do momento:</p>
     <!-- <ul>
       <li>Título: {#{titulo}#}</li>
@@ -18,32 +19,41 @@
     </ul> -->
 
     <!-- percorrendo o dicionario -->
-    {% for chave, valor in game.items() %}
-    <details>
-      <summary>{{chave}}</summary>
-      {{valor}}
-    </details>
-    {% endfor %}
-
-    <p>O jogo {{game['titulo']}} tem {{2025 - game['ano']}} anos.</p>
+   {% for chave, valor in game.items() %}
+   <details>
+   <summary>{{chave}}</summary>
+    {{valor}}
+</details>
+   {% endfor  %}
+    
+   <p>O jogo {{game['titulo']}} tem {{2025 - game['ano']}} anos.</p>
     <hr />
-
+   
     <p>O jogo {{game['titulo']}} está sendo jogado por>:</p>
-
+   
     <ol>
       {% for jogador in jogadores %}
       <li>{{jogador}}</li>
       {% endfor %}
     </ol>
+   
+    <hr>
 
-    <hr />
+    <h4>Entrar no jogo: </h4>
+    <form action="{{url_for('games')}}" method="post">
+      <label>Jogador</label>
+      <input type="text" name="jogador">
+      <input type="submit" value="Entrar">
+    </form>   
 
+    <hr> 
     <p>Outros jogos sendo jogados no momento:</p>
-
+   
     <ul>
       {% for jogo in jogos %}
       <li>{{jogo}}</li>
       {% endfor %}
     </ul>
-  </body>
+  
+</body>
 </html>

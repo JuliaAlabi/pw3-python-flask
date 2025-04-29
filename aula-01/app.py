@@ -9,17 +9,23 @@ app = Flask(__name__, template_folder='views')
 def home():
     return render_template('index.html')
 
+
 @app.route('/games')
 def games():
-    titulo= 'cs-go'
-    ano= 2012
-    categoria = 'FPS Online'
+    # dicionario em phyton (objeto)
+    game = {
+        'titulo': 'cs-go',
+        'ano': 2012,
+        'categoria': 'FPS Online'
+    }
+
     jogadores = ['Julia', 'Yasmin', 'Millie']
-    jogos =['Roblox', 'Minecraft', 'Talking Tom', 'Tetris', 'Super Mario Boss', 'Pacman']
+
+    jogos = ['Roblox', 'Minecraft',  'Talking Tom',
+             'Tetris', 'Super Mario Boss', 'Pacman']
+
     return render_template('games.html',
-                           titulo= titulo,
-                           ano=ano,
-                           categoria=categoria,
+                           game=game,
                            jogadores=jogadores,
                            jogos=jogos)
 
