@@ -25,10 +25,11 @@ class Game(db.Model):
 class Console(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(150))
-    fabricante = db.Column(db.String(150))
+    fabricante = db.Column(db.String(50))
     preco = db.Column(db.Float)
     quantidade = db.Column(db.Integer)
     
+    # metodo construtor da classe
     def __init__(self, nome, fabricante, preco, quantidade):
         self.nome = nome
         self.fabricante = fabricante
