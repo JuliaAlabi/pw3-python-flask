@@ -42,7 +42,7 @@
             <td>{{game.platafroma}}</td>
             <td>{{game.preco}}</td>
             <td>{{game.quantidade}}</td>
-            <td><button class="btn btn-warning">Editar</button></td>
+            <td><a href="{{url_for('editgame', id=game.id)}}"><button class="btn btn-warning">Editar</button></a></td>
             <td><a href="{{url_for('estoque', id=game.id)}}"><button class="btn btn-danger">Excluir</button></a></td>
         </tr>
         {% endfor %}
