@@ -33,7 +33,7 @@
             <td>{{console.fabricante}}</td>
             <td>{{console.preco}}</td>
             <td>{{console.quantidade}}</td>
-            <td><button class="btn btn-warning">Editar</button></td>
+            <td><a href="{{url_for('editconsole', id=console.id)}}"><button class="btn btn-warning">Editar</button></a></td>
             <td><a href="{{url_for('estoqueconsole', id=console.id)}}"><button class="btn btn-danger">Excluir</button></a></td>
         </tr>
         {% endfor %}
