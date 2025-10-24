@@ -2,17 +2,113 @@
 
 {% block content %}
 
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, rgba(44, 36, 22, 0.9) 0%, rgba(58, 48, 29, 0.8) 100%), url("{{url_for('static', filename='imgs/thumb.jpg')}}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 8rem 0;
+        border-radius: 15px;
+        margin-bottom: 4rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+</style>
+
+<link rel="stylesheet" href="style.css">
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title playfair-display">Museu Virtual</h1>
+            <p class="hero-subtitle">Descubra obras-primas da arte digital em uma experiência imersiva</p>
+            <div class="hero-buttons">
+                <a href="{{url_for('galeria')}}" class="btn-hero">
+                    <i class="fas fa-palette me-2"></i>Explorar Galeria
+                </a>
+                <a href="#" class="btn-hero btn-hero-outline">
+                    <i class="fas fa-upload me-2"></i>Contribuir
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="latest-works-section">
+    <div class="container">
+        <h2 class="section-title">Últimas Obras Adicionadas</h2>
+        <p class="section-subtitle">As mais recentes contribuições da nossa comunidade</p>
+        
+        {% if ultimas_obras %}
+        <div class="row">
+            {% for obra in ultimas_obras %}
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="work-card">
+                    <div class="work-image">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="work-info">
+                        <h4 class="work-title">{{ obra.filename|replace('_', ' ')|title|truncate(20) }}</h4>
+                        <p class="work-artist">Artista Anônimo</p>
+                        <div class="work-meta">
+                            <span class="work-date">Há {{ loop.index }} dias</span>
+                            <div class="work-actions">
+                                <button class="work-action-btn" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="work-action-btn" title="Favoritar">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{{url_for('galeria')}}" class="btn-hero">
+                <i class="fas fa-images me-2"></i>Ver Todas as Obras
+            </a>
+        </div>
+        {% else %}
+        <div class="no-works">
+            <div class="no-works-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+            <h3 style="color: #8a6d3b;">Nenhuma obra cadastrada ainda</h3>
+            <p class="mt-3">Seja o primeiro a contribuir com nossa galeria!</p>
+            <a href="{{url_for('galeria')}}" class="btn-hero mt-3">
+                <i class="fas fa-upload me-2"></i>Enviar Primeira Obra
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="quote-section">
+    <div class="container">
+        <blockquote>
+            <p class="quote-text">
+                "A arte digital não é sobre substituir o tradicional, 
+                mas sobre expandir as possibilidades da expressão criativa 
+                em nossa era tecnológica."
+            </p>
+            <footer class="quote-author">
+                — Curadoria Museu Virtual
+            </footer>
+        </blockquote>
+    </div>
+</section>
+
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% for category, message in messages %}
-    <div class="alert alert-{{category}}">
-        {{message}}
+    <div class="alert alert-{{category}} elegant-card">
+        <i class="fas fa-info-circle me-2"></i>{{message}}
     </div>
 {% endfor %}
 {% endwith %}
-
-<h1>Bem-vindo ao The Games!</h1>
-<hr>
-<!-- Importando a imagem -->
-<img src="{{url_for('static', filename='imgs/thumb.jpg')}}" alt="The Games" width="800px">
 
 {% endblock content %}
