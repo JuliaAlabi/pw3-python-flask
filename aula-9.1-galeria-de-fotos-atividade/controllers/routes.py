@@ -30,20 +30,26 @@ def init_app(app):
         imagens = Imagem.query.all()
         if request.method == 'POST':
             file = request.files['file']
+            nome_obra = request.form.get('nome_obra')
+            
             if not arquivos_permitidos(file.filename):
                 flash("Utilize os tipos de arquivos referentes a imagem.", 'danger')
+                return redirect(request.url)
+            
+            if not nome_obra:
+                flash("Por favor, informe o nome da obra.", 'danger')
                 return redirect(request.url)
 
             file_extension = file.filename.rsplit('.', 1)[1].lower()
 
             filename = f"{str(uuid.uuid4())}.{file_extension}"
-            
-            img = Imagem(filename=filename)  
+
+            img = Imagem(filename=filename, nome_obra=nome_obra)
             db.session.add(img)
             db.session.commit()
             
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            flash("Imagem enviada com sucesso!", 'success')
+            flash("Obra enviada com sucesso!", 'success')
             return redirect(url_for('galeria'))
         
         return render_template('galeria.html', imagens=imagens)
